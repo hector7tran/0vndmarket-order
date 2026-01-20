@@ -3,30 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SEHC 0VND Market 2nd 2025</title>
+    <title>SEHC 0VND Market 2025</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         :root { --tet-red: #D32F2F; --tet-gold: #FFD700; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #FFF9F9; }
+        body { font-family: -apple-system, system-ui, sans-serif; background-color: #FFF9F9; -webkit-tap-highlight-color: transparent; }
         .tet-bg { background: linear-gradient(135deg, var(--tet-red) 0%, #921212 100%); }
         .tab-active { border-bottom: 4px solid var(--tet-gold); color: var(--tet-gold); font-weight: bold; }
-        .card-shadow { box-shadow: 0 4px 15px rgba(211, 47, 47, 0.1); border-top: 4px solid var(--tet-gold); }
-        .loading-overlay { position: fixed; inset: 0; background: rgba(255,255,255,0.9); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; }
-        input, select { font-size: 16px !important; } /* Tránh zoom trên iOS */
-        .product-grid { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; }
+        .card-tet { box-shadow: 0 4px 15px rgba(211, 47, 47, 0.1); border-top: 4px solid var(--tet-gold); border-radius: 1rem; background: white; padding: 1.25rem; }
+        .loading-overlay { position: fixed; inset: 0; background: rgba(255,255,255,0.95); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; }
+        .prod-grid { display: grid; grid-template-columns: 1fr 50px; gap: 8px; align-items: center; }
+        input, select { font-size: 16px !important; } /* Chặn auto-zoom iOS */
     </style>
 </head>
 <body class="pb-10">
 
     <div id="loader" class="loading-overlay">
         <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-red-600 mb-4"></div>
-        <p class="text-red-700 font-bold animate-pulse">ĐANG TẢI DỮ LIỆU TẾT...</p>
+        <p class="text-red-700 font-bold">ĐANG KẾT NỐI HỆ THỐNG...</p>
     </div>
 
     <header class="tet-bg text-white p-5 text-center shadow-lg">
         <h1 class="text-xl font-bold tracking-tight">🌸 SEHC 0VND MARKET 🌸</h1>
-        <p class="text-[10px] opacity-80 uppercase mt-1">Trang đặt hàng online</p>
+        <p class="text-[10px] opacity-80 uppercase mt-1">Trang đặt hàng</p>
     </header>
 
     <nav class="flex bg-red-900 text-white sticky top-0 z-50 shadow-md">
@@ -34,91 +34,76 @@
         <button onclick="switchTab('admin')" id="btn-admin" class="flex-1 py-4 transition">QUẢN TRỊ</button>
     </nav>
 
-    <main class="max-w-md mx-auto p-4">
+    <main class="max-w-md mx-auto p-4 space-y-4">
         
         <section id="tab-order" class="space-y-4">
-            <div class="bg-white p-5 rounded-2xl card-shadow">
-                <a href="https://docs.google.com/spreadsheets/d/1NkBG8x2VolqfKiJmKNsukTh51VcBfGGz/edit?usp=sharing" target="_blank" class="block w-full text-center bg-yellow-400 text-red-900 font-bold py-3 rounded-xl mb-5 shadow-sm active:bg-yellow-500">
-                    📖 XEM CATALOG SẢN PHẨM (Excel)
+            <div class="card-tet">
+                <a href="https://docs.google.com/spreadsheets/d/1NkBG8x2VolqfKiJmKNsukTh51VcBfGGz/edit?usp=sharing" target="_blank" class="block w-full text-center bg-yellow-400 text-red-900 font-bold py-3 rounded-xl mb-5 active:scale-95 transition">
+                    📖 XEM CATALOG SẢN PHẨM
                 </a>
 
                 <div class="space-y-4">
                     <div>
-                        <label class="text-xs font-bold text-gray-500 uppercase">Mã nhân viên (8 chữ số)</label>
-                        <input type="number" id="empId" class="w-full border-2 border-gray-100 p-3 rounded-xl mt-1 focus:border-red-500 outline-none transition-all" placeholder="Nhập 8 số mã NV">
+                        <label class="text-[10px] font-bold text-gray-400 uppercase">Mã nhân viên (8 số)</label>
+                        <input type="number" id="empId" class="w-full border-2 border-gray-100 p-3 rounded-xl outline-none focus:border-red-500" placeholder="VD: 12345678">
                     </div>
                     <div>
-                        <label class="text-xs font-bold text-gray-500 uppercase">Họ và tên</label>
-                        <input type="text" id="empName" class="w-full border-2 border-gray-100 p-3 rounded-xl mt-1 focus:border-red-500 outline-none transition-all" placeholder="Nhập tên đầy đủ">
+                        <label class="text-[10px] font-bold text-gray-400 uppercase">Họ và tên</label>
+                        <input type="text" id="empName" class="w-full border-2 border-gray-100 p-3 rounded-xl outline-none focus:border-red-500" placeholder="Nhập tên tiếng Việt">
                     </div>
                     <div class="grid grid-cols-1 gap-4">
-                        <div>
-                            <label class="text-xs font-bold text-gray-500 uppercase">Email (Nhận thông báo)</label>
-                            <input type="email" id="email" class="w-full border-2 border-gray-100 p-3 rounded-xl mt-1 focus:border-red-500 outline-none shadow-sm" placeholder="example@gmail.com">
-                        </div>
-                        <div>
-                            <label class="text-xs font-bold text-gray-500 uppercase">Số điện thoại</label>
-                            <input type="tel" id="phone" class="w-full border-2 border-gray-100 p-3 rounded-xl mt-1 focus:border-red-500 outline-none shadow-sm" placeholder="Số điện thoại liên hệ">
-                        </div>
+                        <input type="email" id="email" class="w-full border-2 border-gray-100 p-3 rounded-xl outline-none" placeholder="Email nhận xác nhận">
+                        <input type="tel" id="phone" class="w-full border-2 border-gray-100 p-3 rounded-xl outline-none" placeholder="Số điện thoại">
                     </div>
                 </div>
             </div>
 
-            <div class="bg-white p-5 rounded-2xl card-shadow">
-                <h3 class="font-bold text-red-700 mb-4 flex items-center justify-between">
-                    <span>🛒 CHỌN SẢN PHẨM</span>
-                    <span id="cart-count" class="bg-red-600 text-white px-3 py-1 rounded-full text-xs">0 món</span>
-                </h3>
+            <div class="card-tet">
+                <h3 class="font-bold text-red-700 mb-3">🛒 CHỌN HÀNG HÓA</h3>
+                <input type="text" id="prodSearch" oninput="filterProducts()" class="w-full bg-gray-50 border border-gray-200 p-2 rounded-lg text-sm mb-3" placeholder="🔍 Tìm tên hoặc mã SP...">
                 
-                <div class="space-y-3">
-                    <input type="text" id="prodSearch" oninput="filterProducts()" class="w-full bg-gray-50 border border-gray-200 p-2 rounded-lg text-sm" placeholder="🔍 Tìm tên hoặc mã sản phẩm...">
-                    
-                    <div class="product-grid">
-                        <select id="productSelect" class="w-full border border-gray-300 p-3 rounded-xl text-sm bg-white focus:ring-2 focus:ring-red-500 outline-none truncate">
-                            </select>
-                        <button onclick="addToCart()" class="bg-red-600 text-white w-12 h-12 rounded-xl font-bold text-2xl flex items-center justify-center shadow-lg active:scale-90 transition">+</button>
-                    </div>
+                <div class="prod-grid">
+                    <select id="productSelect" class="w-full border border-gray-300 p-3 rounded-xl text-sm bg-white truncate">
+                        </select>
+                    <button onclick="addToCart()" class="bg-red-600 text-white w-full h-12 rounded-xl font-bold text-2xl shadow-lg active:scale-90">+</button>
                 </div>
                 
                 <div id="cartItems" class="mt-4 divide-y border-t"></div>
 
-                <div class="mt-4 pt-4 border-t flex justify-between items-center">
-                    <span class="font-bold text-gray-700">TỔNG CỘNG:</span>
-                    <span id="totalPrice" class="text-2xl font-black text-red-600">0đ</span>
+                <div class="mt-4 pt-4 border-t flex justify-between items-center font-bold">
+                    <span class="text-gray-600">TỔNG TIỀN:</span>
+                    <span id="totalPrice" class="text-2xl text-red-600">0đ</span>
                 </div>
 
-                <button onclick="submitOrder()" class="w-full mt-6 bg-red-600 text-white py-4 rounded-2xl font-bold text-lg shadow-xl hover:bg-red-700 active:translate-y-1 transition-all">
+                <button onclick="submitOrder()" class="w-full mt-6 bg-red-600 text-white py-4 rounded-2xl font-bold text-lg shadow-xl active:translate-y-1 transition-all">
                     XÁC NHẬN ĐẶT HÀNG
                 </button>
-                
-                <div class="mt-6 text-center space-y-1">
-                    <p class="text-[11px] text-gray-400 italic">Mọi thắc mắc vui lòng liên hệ:</p>
-                    <p class="text-sm font-medium text-gray-700">Zalo: <a href="https://zalo.me/0903673931" class="text-blue-600 font-bold">0903-673-931</a></p>
-                    <p class="text-sm font-medium text-gray-700">Hotline: <a href="tel:0911859200" class="text-blue-600 font-bold">0911-859-200</a></p>
+                <div class="mt-4 text-center text-[11px] text-gray-500">
+                    Hotline: <a href="tel:0911859200" class="text-blue-600 font-bold">0911-859-200</a> | Zalo: 0903-673-931
                 </div>
             </div>
         </section>
 
         <section id="tab-admin" class="hidden space-y-4">
-            <div id="admin-login" class="bg-white p-10 rounded-2xl shadow-lg border-t-4 border-gray-800 text-center">
+            <div id="admin-login" class="card-tet text-center">
                 <h3 class="font-bold mb-4">🔐 QUẢN TRỊ VIÊN</h3>
-                <input type="password" id="adminPass" class="w-full border p-4 rounded-xl mb-4 text-center tracking-[1em]" placeholder="****">
+                <input type="password" id="adminPass" class="w-full border p-4 rounded-xl mb-4 text-center" placeholder="Nhập mật khẩu">
                 <button onclick="verifyAdmin()" class="w-full bg-gray-800 text-white py-3 rounded-xl font-bold">ĐĂNG NHẬP</button>
             </div>
 
             <div id="admin-content" class="hidden space-y-4">
                 <div class="grid grid-cols-3 gap-2 sticky top-16 bg-[#FFF9F9] py-2 z-40">
                     <div class="bg-white p-3 rounded-xl text-center border shadow-sm">
-                        <div id="stat-total" class="text-xl font-bold text-blue-700">0</div>
-                        <div class="text-[9px] text-gray-400 font-bold uppercase">Tổng đơn</div>
+                        <div id="stat-total" class="text-lg font-bold text-blue-700">0</div>
+                        <div class="text-[8px] text-gray-400 font-bold uppercase">Tổng đơn</div>
                     </div>
                     <div class="bg-white p-3 rounded-xl text-center border shadow-sm">
-                        <div id="stat-prep" class="text-xl font-bold text-orange-500">0</div>
-                        <div class="text-[9px] text-gray-400 font-bold uppercase">Chờ nhận</div>
+                        <div id="stat-prep" class="text-lg font-bold text-orange-500">0</div>
+                        <div class="text-[8px] text-gray-400 font-bold uppercase">Cần chuẩn bị</div>
                     </div>
                     <div class="bg-white p-3 rounded-xl text-center border shadow-sm">
-                        <div id="stat-done" class="text-xl font-bold text-green-600">0</div>
-                        <div class="text-[9px] text-gray-400 font-bold uppercase">Hoàn tất</div>
+                        <div id="stat-done" class="text-lg font-bold text-green-600">0</div>
+                        <div class="text-[8px] text-gray-400 font-bold uppercase">Hoàn tất</div>
                     </div>
                 </div>
                 <div id="orderList" class="space-y-4 pb-10"></div>
@@ -128,7 +113,7 @@
 
     <script>
         const API_URL = 'https://script.google.com/macros/s/AKfycbyX45eLMSESi_fqElh0y3Au1fPqZdugWBjMeB96ap6ruIYsHkosKvu5ECdnAYn78xzi/exec';
-        let APP_DATA = { products: [], cart: [], orders: [] };
+        let APP_DATA = { products: [], cart: [], orders: [], adminKey: '' };
 
         window.onload = async () => {
             try {
@@ -148,161 +133,124 @@
         }
 
         function filterProducts() {
-            const keyword = document.getElementById('prodSearch').value.toLowerCase();
-            const filtered = APP_DATA.products.filter(p => 
-                p.ProductName.toLowerCase().includes(keyword) || 
-                String(p.ProductID).toLowerCase().includes(keyword)
-            );
+            const kw = document.getElementById('prodSearch').value.toLowerCase();
+            const filtered = APP_DATA.products.filter(p => p.ProductName.toLowerCase().includes(kw) || String(p.ProductID).toLowerCase().includes(kw));
             renderProductSelect(filtered);
         }
 
         function switchTab(tab) {
             document.getElementById('tab-order').classList.toggle('hidden', tab !== 'order');
             document.getElementById('tab-admin').classList.toggle('hidden', tab !== 'admin');
-            document.getElementById('btn-order').className = tab === 'order' ? 'flex-1 py-4 transition tab-active' : 'flex-1 py-4 transition';
-            document.getElementById('btn-admin').className = tab === 'admin' ? 'flex-1 py-4 transition tab-active' : 'flex-1 py-4 transition';
+            document.getElementById('btn-order').classList.toggle('tab-active', tab === 'order');
+            document.getElementById('btn-admin').classList.toggle('tab-active', tab === 'admin');
         }
 
         function addToCart() {
             const pid = document.getElementById('productSelect').value;
-            if(!pid) return;
-            const product = APP_DATA.products.find(p => p.ProductID == pid);
-            const existing = APP_DATA.cart.find(c => c.id == pid);
-            
-            if (existing) existing.qty++;
-            else APP_DATA.cart.push({ id: pid, name: product.ProductName, price: product.Price, qty: 1 });
+            const p = APP_DATA.products.find(x => x.ProductID == pid);
+            const exist = APP_DATA.cart.find(c => c.id == pid);
+            if (exist) exist.qty++; else APP_DATA.cart.push({ id: pid, name: p.ProductName, price: p.Price, qty: 1 });
             renderCart();
         }
 
         function renderCart() {
             const container = document.getElementById('cartItems');
             container.innerHTML = APP_DATA.cart.map((item, idx) => `
-                <div class="flex justify-between items-center py-3 bg-white">
-                    <div class="pr-2">
-                        <div class="font-bold text-sm text-gray-800">${item.name}</div>
-                        <div class="text-[11px] text-red-500">${Number(item.price).toLocaleString()}đ</div>
+                <div class="flex justify-between items-center py-3">
+                    <div class="text-sm font-bold truncate pr-2">${item.name}</div>
+                    <div class="flex items-center gap-3 bg-gray-100 p-1 rounded-lg">
+                        <button onclick="updateQty(${idx},-1)" class="w-7 h-7 bg-white rounded shadow-sm font-bold">-</button>
+                        <span class="text-xs font-bold">${item.qty}</span>
+                        <button onclick="updateQty(${idx},1)" class="w-7 h-7 bg-white rounded shadow-sm font-bold">+</button>
                     </div>
-                    <div class="flex items-center gap-3 bg-gray-100 rounded-lg p-1">
-                        <button onclick="updateQty(${idx}, -1)" class="w-8 h-8 bg-white rounded shadow-sm font-bold">-</button>
-                        <span class="w-4 text-center font-bold text-sm">${item.qty}</span>
-                        <button onclick="updateQty(${idx}, 1)" class="w-8 h-8 bg-white rounded shadow-sm font-bold">+</button>
-                    </div>
-                </div>
-            `).join('');
-            
-            const total = APP_DATA.cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+                </div>`).join('');
+            const total = APP_DATA.cart.reduce((s, i) => s + (i.price * i.qty), 0);
             document.getElementById('totalPrice').textContent = total.toLocaleString() + 'đ';
-            document.getElementById('cart-count').textContent = APP_DATA.cart.length + " món";
         }
 
-        function updateQty(idx, delta) {
-            APP_DATA.cart[idx].qty += delta;
-            if (APP_DATA.cart[idx].qty <= 0) APP_DATA.cart.splice(idx, 1);
+        function updateQty(i, d) {
+            APP_DATA.cart[i].qty += d;
+            if (APP_DATA.cart[i].qty <= 0) APP_DATA.cart.splice(i, 1);
             renderCart();
         }
 
-        async function submitOrder() {
-            const empId = document.getElementById('empId').value;
-            const empName = document.getElementById('empName').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
+        function submitOrder() {
+            const d = {
+                action: 'createOrder',
+                empId: document.getElementById('empId').value,
+                empName: document.getElementById('empName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                cart: APP_DATA.cart,
+                total: APP_DATA.cart.reduce((s, i) => s + (i.price * i.qty), 0)
+            };
+            if (d.empId.length < 5 || !d.empName || !d.email || d.cart.length === 0) return Swal.fire("Lỗi", "Vui lòng nhập đủ thông tin", "warning");
 
-            if (empId.length < 5 || !empName || !email || APP_DATA.cart.length === 0) {
-                return Swal.fire("Lỗi", "Vui lòng nhập đầy đủ thông tin và chọn sản phẩm", "warning");
-            }
-
-            Swal.fire({
-                title: "Đặt hàng thành công!",
-                text: "Đơn hàng đang được hệ thống xử lý ngầm. Vui lòng kiểm tra Email sau vài phút.",
-                icon: "success",
-                confirmButtonColor: "#D32F2F"
-            });
-
-            const orderData = { action: 'createOrder', empId, empName, email, phone, cart: APP_DATA.cart, total: APP_DATA.cart.reduce((sum, item) => sum + (item.price * item.qty), 0) };
-
-            // Fetch ngầm
-            fetch(API_URL, { method: 'POST', body: JSON.stringify(orderData) });
-
-            // Reset UI
-            APP_DATA.cart = [];
-            renderCart();
+            Swal.fire("Thành công", "Đơn hàng đang xử lý ngầm. Vui lòng check email!", "success");
+            fetch(API_URL, { method: 'POST', body: JSON.stringify(d) });
+            APP_DATA.cart = []; renderCart();
             document.querySelectorAll('input').forEach(i => i.value = "");
         }
 
-        // ADMIN
-        function verifyAdmin() {
-            if (document.getElementById('adminPass').value === "5555") {
+        /** ADMIN LOGIC **/
+        async function verifyAdmin() {
+            const pass = document.getElementById('adminPass').value;
+            Swal.fire({ title: 'Đang xác thực...', didOpen: () => Swal.showLoading() });
+            
+            const resp = await fetch(`${API_URL}?action=getOrders&pass=${pass}`);
+            const res = await resp.json();
+
+            if (res.error) {
+                Swal.fire("Sai mã", "Mật khẩu không chính xác", "error");
+            } else {
+                APP_DATA.adminKey = pass;
+                APP_DATA.orders = res;
                 document.getElementById('admin-login').classList.add('hidden');
                 document.getElementById('admin-content').classList.remove('hidden');
-                loadAdminOrders();
-            } else {
-                Swal.fire("Sai mã", "Mã truy cập không đúng", "error");
+                renderAdminOrders(res);
+                Swal.close();
+                // Auto lock after 5 mins
+                setTimeout(() => location.reload(), 300000);
             }
         }
 
-        async function loadAdminOrders() {
-            try {
-                const resp = await fetch(`${API_URL}?action=getOrders`);
-                const orders = await resp.json();
-                APP_DATA.orders = orders;
-                
-                document.getElementById('stat-total').textContent = orders.length;
-                document.getElementById('stat-prep').textContent = orders.filter(o => o.Status === 'Đã chuẩn bị').length;
-                document.getElementById('stat-done').textContent = orders.filter(o => o.Status === 'Đã nhận').length;
+        function renderAdminOrders(orders) {
+            document.getElementById('stat-total').textContent = orders.length;
+            document.getElementById('stat-prep').textContent = orders.filter(o => o.Status === 'Đã chuẩn bị').length;
+            document.getElementById('stat-done').textContent = orders.filter(o => o.Status === 'Đã nhận').length;
 
-                const container = document.getElementById('orderList');
-                container.innerHTML = orders.reverse().map(o => {
-                    const isReceived = o.Status === 'Đã nhận';
-                    return `
-                    <div class="bg-white p-4 rounded-2xl border shadow-sm relative overflow-hidden" id="card-${o.OrderID}">
-                        <div class="flex justify-between items-start mb-2">
-                            <div>
-                                <span class="bg-red-100 text-red-700 px-2 py-1 rounded text-[10px] font-bold">#${o.OrderID}</span>
-                                <h4 class="font-bold text-gray-800 mt-1">${o.EmployeeName}</h4>
-                            </div>
-                            <span class="text-[10px] text-gray-400">${new Date(o.Timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
-                        </div>
-                        <p class="text-xs text-gray-500 mb-3 italic">${o.Email}</p>
-                        
-                        <input type="text" placeholder="Hẹn giờ nhận (VD: 14:00)..." id="time-${o.OrderID}" value="${o.PickupTime || ''}" class="w-full border p-2 rounded-lg text-xs mb-3">
-                        
-                        <div class="flex gap-2">
-                            <button onclick="optimisticUpdate('${o.OrderID}', 'Đã chuẩn bị')" class="flex-1 bg-yellow-500 text-white py-2 rounded-lg text-[11px] font-bold">CHUẨN BỊ</button>
-                            <button onclick="optimisticUpdate('${o.OrderID}', 'Đã nhận')" class="flex-1 bg-green-600 text-white py-2 rounded-lg text-[11px] font-bold">ĐÃ NHẬN</button>
-                            ${isReceived ? '' : `<button onclick="optimisticUpdate('${o.OrderID}', 'Đã hủy')" class="flex-1 bg-gray-200 text-gray-500 py-2 rounded-lg text-[11px] font-bold">HỦY</button>`}
-                        </div>
+            document.getElementById('orderList').innerHTML = orders.reverse().map(o => `
+                <div class="bg-white p-4 rounded-2xl border shadow-sm" id="card-${o.OrderID}">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-[10px] font-bold text-red-600 bg-red-50 px-2 py-0.5 rounded">#${o.OrderID}</span>
+                        <span class="text-[9px] text-gray-400">${new Date(o.Timestamp).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}</span>
                     </div>
-                `}).join('');
-            } catch (e) { console.log(e); }
+                    <div class="font-bold text-sm text-gray-800">${o.EmployeeName}</div>
+                    <input type="text" id="time-${o.OrderID}" value="${o.PickupTime||''}" class="w-full border p-2 mt-2 rounded-lg text-xs" placeholder="Hẹn giờ...">
+                    <div class="flex gap-2 mt-3">
+                        <button onclick="updateOrder('${o.OrderID}','Đã chuẩn bị')" class="flex-1 bg-yellow-500 text-white py-2 rounded-lg text-[10px] font-bold">CHUẨN BỊ</button>
+                        <button onclick="updateOrder('${o.OrderID}','Đã nhận')" class="flex-1 bg-green-600 text-white py-2 rounded-lg text-[10px] font-bold">ĐÃ NHẬN</button>
+                        ${o.Status === 'Đã nhận' ? '' : `<button onclick="updateOrder('${o.OrderID}','Đã hủy')" class="flex-1 bg-gray-200 text-gray-500 py-2 rounded-lg text-[10px] font-bold">HỦY</button>`}
+                    </div>
+                </div>`).join('');
         }
 
-        function optimisticUpdate(orderId, status) {
-            const pickupTime = document.getElementById(`time-${orderId}`).value;
+        function updateOrder(id, status) {
+            const time = document.getElementById(`time-${id}`).value;
+            Swal.fire({ toast:true, position:'top-end', icon:'success', title:'Đã cập nhật', showConfirmButton:false, timer:1500 });
             
-            // Hiển thị thành công ngay
-            Swal.fire({
-                toast: true,
-                position: 'top-end',
-                icon: 'success',
-                title: `Đã chuyển đơn ${orderId} sang ${status}`,
-                showConfirmButton: false,
-                timer: 1500
-            });
-
-            // Update UI cục bộ để admin thấy sự thay đổi ngay
+            // UI Update
             if(status === 'Đã nhận') {
-                const card = document.getElementById(`card-${orderId}`);
-                const cancelBtn = card.querySelector('button:last-child');
-                if(cancelBtn && cancelBtn.innerText === 'HỦY') cancelBtn.remove();
+                const card = document.getElementById(`card-${id}`);
+                const btns = card.querySelectorAll('button');
+                if(btns[2]) btns[2].remove();
             }
 
-            // Gửi ngầm lên Google Sheet
-            fetch(API_URL, {
-                method: 'POST',
-                body: JSON.stringify({ action: 'updateOrder', orderId, status, pickupTime })
+            fetch(API_URL, { 
+                method: 'POST', 
+                body: JSON.stringify({ action:'updateOrder', orderId:id, status, pickupTime:time, pass:APP_DATA.adminKey }) 
             });
         }
     </script>
 </body>
 </html>
-
