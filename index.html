@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SEHC 0VND Market 2nd 2025</title>
+    <title>Trang đặt hàng - SEHC 0VND Market</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         :root { --red: #D32F2F; --gold: #FFD700; }
         body { font-family: -apple-system, system-ui, sans-serif; background: #FFF9F9; }
-        .tet-header { background: linear-gradient(135deg, var(--red) 0%, #921212 100%); color: white; padding: 1.25rem; text-align: center; }
-        .tab-btn { flex: 1; padding: 1rem; color: #fff; background: #7f1d1d; transition: 0.3s; font-size: 0.875rem; }
+        .tet-header { background: linear-gradient(135deg, var(--red) 0%, #921212 100%); color: white; padding: 1.5rem; text-align: center; }
+        .tab-btn { flex: 1; padding: 1rem; color: #fff; background: #7f1d1d; transition: 0.3s; font-size: 0.875rem; font-weight: 500; }
         .tab-btn.active { border-bottom: 4px solid var(--gold); color: var(--gold); font-weight: bold; }
         .card-tet { background: white; border-radius: 1rem; border-top: 4px solid var(--gold); box-shadow: 0 4px 15px rgba(0,0,0,0.05); padding: 1.25rem; }
         .loading { position: fixed; inset: 0; background: rgba(255,255,255,0.95); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; }
@@ -21,11 +21,11 @@
 
     <div id="loader" class="loading">
         <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-red-600 mb-3"></div>
-        <p class="text-red-700 font-bold">Đang tải dữ liệu...</p>
+        <p class="text-red-700 font-bold">Vui lòng chờ giây lát...</p>
     </div>
 
     <header class="tet-header shadow-md">
-        <h1 class="text-lg font-bold tracking-widest uppercase">🌸 SEHC 0VND Market 2nd 2025 🌸</h1>
+        <h1 class="text-lg font-bold tracking-widest uppercase">🌸 SEHC 0VND MARKET 2025 🌸</h1>
     </header>
 
     <nav class="flex sticky top-0 z-50 shadow-md">
@@ -36,58 +36,60 @@
     <main class="max-w-md mx-auto p-4 space-y-4">
         <section id="tab-order" class="space-y-4">
             <div class="card-tet">
-                <a href="https://docs.google.com/spreadsheets/d/1NkBG8x2VolqfKiJmKNsukTh51VcBfGGz/edit?usp=sharing" target="_blank" class="block w-full text-center bg-yellow-400 text-red-900 font-bold py-3 rounded-xl mb-4 shadow-sm active:scale-95 transition">📖 XEM CATALOG SẢN PHẨM</a>
+                <a href="https://docs.google.com/spreadsheets/d/1NkBG8x2VolqfKiJmKNsukTh51VcBfGGz/edit?usp=sharing" target="_blank" class="block w-full text-center bg-yellow-400 text-red-900 font-bold py-3 rounded-xl mb-4 shadow-sm active:scale-95 transition">📖 XEM CATALOG PDF</a>
                 <div class="space-y-3">
-                    <input type="number" id="empId" class="w-full border p-3 rounded-xl outline-none focus:ring-2 focus:ring-red-500" placeholder="Mã nhân viên (8 số)">
-                    <input type="text" id="empName" class="w-full border p-3 rounded-xl outline-none focus:ring-2 focus:ring-red-500" placeholder="Họ và tên">
-                    <input type="email" id="email" class="w-full border p-3 rounded-xl outline-none focus:ring-2 focus:ring-red-500" placeholder="Email nhận xác nhận">
-                    <input type="tel" id="phone" class="w-full border p-3 rounded-xl outline-none focus:ring-2 focus:ring-red-500" placeholder="Số điện thoại">
+                    <input type="number" id="empId" class="w-full border p-3 rounded-xl outline-none focus:ring-2 focus:ring-red-100 border-gray-100" placeholder="Mã nhân viên (8 số)">
+                    <input type="text" id="empName" class="w-full border p-3 rounded-xl outline-none focus:ring-2 focus:ring-red-100 border-gray-100" placeholder="Họ và tên người đặt">
+                    <input type="email" id="email" class="w-full border p-3 rounded-xl outline-none border-gray-100" placeholder="Email nhận xác nhận">
+                    <input type="tel" id="phone" class="w-full border p-3 rounded-xl outline-none border-gray-100" placeholder="Số điện thoại liên hệ">
                 </div>
             </div>
             
             <div class="card-tet">
                 <h3 class="font-bold text-red-700 mb-3 flex justify-between">🛒 CHỌN SẢN PHẨM <span id="cart-count" class="text-[10px] bg-red-100 px-2 py-0.5 rounded text-red-600">0 món</span></h3>
-                <input type="text" id="prodSearch" oninput="filterProducts()" class="w-full border border-gray-100 bg-gray-50 p-2 rounded-lg mb-3 text-sm" placeholder="Tìm tên sản phẩm...">
+                <input type="text" id="prodSearch" oninput="filterProducts()" class="w-full border border-gray-50 bg-gray-50 p-2 rounded-lg mb-3 text-sm" placeholder="Tìm tên hoặc mã món...">
                 <div class="grid grid-cols-[1fr_50px] gap-2">
-                    <select id="productSelect" class="w-full border p-3 rounded-xl text-sm truncate outline-none"></select>
+                    <select id="productSelect" class="w-full border p-3 rounded-xl text-sm truncate outline-none border-gray-200"></select>
                     <button onclick="addToCart()" class="bg-red-600 text-white rounded-xl font-bold text-2xl shadow-lg active:scale-90">+</button>
                 </div>
                 <div id="cartItems" class="mt-4 divide-y"></div>
                 <div class="mt-4 pt-4 border-t flex justify-between items-center font-bold">
-                    <span class="text-gray-500">TỔNG:</span><span id="totalPrice" class="text-2xl text-red-600">0đ</span>
+                    <span class="text-gray-400 text-sm">TỔNG CỘNG:</span><span id="totalPrice" class="text-2xl text-red-600">0đ</span>
                 </div>
-                <button onclick="submitOrder()" class="w-full bg-red-600 text-white py-4 rounded-xl font-bold text-lg mt-4 shadow-xl active:translate-y-1 transition-all">XÁC NHẬN ĐẶT HÀNG</button>
+                <button onclick="submitOrder()" class="w-full bg-red-600 text-white py-4 rounded-xl font-bold text-lg mt-5 shadow-xl active:translate-y-1 transition-all uppercase">Xác nhận đặt hàng</button>
+            </div>
+
+            <div class="bg-red-50 p-5 rounded-2xl border-2 border-red-100 text-center space-y-2">
+                <p class="text-xs font-bold text-red-800 uppercase tracking-widest">Hỗ trợ trực tiếp</p>
+                <div class="flex flex-col gap-1">
+                    <a href="https://zalo.me/0903673931" class="text-sm font-semibold text-gray-700 flex items-center justify-center gap-2">
+                        <span class="bg-blue-600 text-white px-1.5 py-0.5 rounded text-[10px]">Zalo</span> 0903-673-931
+                    </a>
+                    <a href="tel:0911859200" class="text-sm font-semibold text-gray-700 flex items-center justify-center gap-2">
+                        <span class="bg-green-600 text-white px-1.5 py-0.5 rounded text-[10px]">📞</span> 0911-859-200
+                    </a>
+                </div>
+                <p class="text-[10px] text-red-400 italic mt-2">* Vui lòng liên hệ nếu gặp sự cố khi đặt hàng</p>
             </div>
         </section>
 
         <section id="tab-admin" class="hidden space-y-4">
-            <div id="admin-login" class="card-tet text-center">
-                <h3 class="font-bold mb-4">🔐 TRUY CẬP QUẢN TRỊ</h3>
-                <input type="password" id="adminPass" class="w-full border p-4 rounded-xl text-center mb-4 outline-none" placeholder="Nhập mật khẩu">
-                <button onclick="verifyAdmin()" class="bg-gray-800 text-white w-full py-3 rounded-xl font-bold active:scale-95 transition">ĐĂNG NHẬP</button>
+            <div id="admin-login" class="card-tet text-center p-10">
+                <h3 class="font-bold mb-4">🔐 QUẢN TRỊ VIÊN</h3>
+                <input type="password" id="adminPass" class="w-full border p-4 rounded-xl text-center mb-4 outline-none border-gray-100" placeholder="Nhập mã truy cập">
+                <button onclick="verifyAdmin()" class="bg-gray-800 text-white w-full py-3 rounded-xl font-bold">ĐĂNG NHẬP</button>
             </div>
 
             <div id="admin-content" class="hidden space-y-4">
                 <div class="grid grid-cols-3 gap-2 sticky top-16 bg-[#FFF9F9] py-2 z-40">
-                    <div class="bg-white p-2 rounded-lg border text-center shadow-sm">
-                        <div id="s-total" class="font-bold text-blue-600 text-lg">0</div>
-                        <div class="text-[8px] text-gray-400 font-bold">TỔNG ĐƠN</div>
-                    </div>
-                    <div class="bg-white p-2 rounded-lg border text-center shadow-sm">
-                        <div id="s-prep" class="font-bold text-orange-500 text-lg">0</div>
-                        <div class="text-[8px] text-gray-400 font-bold">CHỜ NHẬN</div>
-                    </div>
-                    <div class="bg-white p-2 rounded-lg border text-center shadow-sm">
-                        <div id="s-done" class="font-bold text-green-600 text-lg">0</div>
-                        <div class="text-[8px] text-gray-400 font-bold">HOÀN TẤT</div>
-                    </div>
+                    <div class="bg-white p-2 rounded-lg border text-center shadow-sm"><div id="s-total" class="font-bold text-blue-600">0</div><div class="text-[8px] text-gray-400">TỔNG</div></div>
+                    <div class="bg-white p-2 rounded-lg border text-center shadow-sm"><div id="s-prep" class="font-bold text-orange-500">0</div><div class="text-[8px] text-gray-400">CHỜ NHẬN</div></div>
+                    <div class="bg-white p-2 rounded-lg border text-center shadow-sm"><div id="s-done" class="font-bold text-green-600">0</div><div class="text-[8px] text-gray-400">XONG</div></div>
                 </div>
-
                 <div class="relative">
-                    <input type="text" id="adminOrderSearch" oninput="filterAdminOrders()" class="w-full border-2 border-red-100 p-3 pl-10 rounded-xl outline-none focus:border-red-500 shadow-sm" placeholder="Tìm theo Mã đơn (#) hoặc Tên...">
+                    <input type="text" id="adminOrderSearch" oninput="filterAdminOrders()" class="w-full border-2 border-red-50 p-3 pl-10 rounded-xl outline-none focus:border-red-200" placeholder="Tìm mã đơn hoặc tên...">
                     <span class="absolute left-3 top-3.5 opacity-30 text-lg">🔍</span>
                 </div>
-
                 <div id="orderList" class="space-y-4 pb-10"></div>
             </div>
         </section>
@@ -104,7 +106,7 @@
                 APP_DATA.products = d.products;
                 renderProductSelect(d.products);
                 document.getElementById('loader').classList.add('hidden');
-            } catch(e) { Swal.fire("Lỗi kết nối API", "Vui lòng thử lại", "error"); }
+            } catch(e) { Swal.fire("Lỗi máy chủ", "Vui lòng thử lại", "error"); }
         };
 
         function renderProductSelect(list) {
@@ -138,7 +140,7 @@
                     <span class="font-bold text-gray-700">${item.name}</span>
                     <div class="flex items-center gap-3 bg-gray-50 p-1 rounded-lg">
                         <button onclick="changeQty(${i},-1)" class="w-7 h-7 bg-white rounded shadow-sm font-bold text-red-600">-</button>
-                        <span class="w-4 text-center font-bold">${item.qty}</span>
+                        <span class="w-4 text-center font-bold text-xs">${item.qty}</span>
                         <button onclick="changeQty(${i},1)" class="w-7 h-7 bg-white rounded shadow-sm font-bold text-red-600">+</button>
                     </div>
                 </div>`).join('');
@@ -163,35 +165,31 @@
                 cart: APP_DATA.cart,
                 total: APP_DATA.cart.reduce((s,i) => s + (i.price*i.qty), 0)
             };
-            if(!d.empId || !d.empName || d.cart.length === 0) return Swal.fire("Lỗi","Vui lòng điền đủ thông tin","warning");
-            Swal.fire("Thành công!", "Đơn hàng đang xử lý ngầm.", "success");
+            if(!d.empId || !d.empName || d.cart.length === 0) return Swal.fire("Lưu ý","Vui lòng điền đầy đủ thông tin đặt hàng","warning");
+            Swal.fire("Đặt hàng thành công!", "Đơn hàng đang được xử lý ngầm.", "success");
             fetch(API_URL, {method:'POST', body: JSON.stringify(d)});
-            APP_DATA.cart = []; renderCart(); document.querySelectorAll('#tab-order input').forEach(i=>i.value="");
+            APP_DATA.cart = []; renderCart(); 
+            document.querySelectorAll('#tab-order input').forEach(i=>i.value="");
         }
 
         /* --- ADMIN LOGIC --- */
         async function verifyAdmin() {
             const pass = document.getElementById('adminPass').value;
-            Swal.fire({title:'Xác thực...', didOpen:()=>Swal.showLoading()});
+            Swal.fire({title:'Đang tải...', didOpen:()=>Swal.showLoading()});
             const r = await fetch(`${API_URL}?action=getOrders&pass=${pass}`);
             const res = await r.json();
-            if(res.error) return Swal.fire("Sai mật khẩu","","error");
-            APP_DATA.adminKey = pass;
-            APP_DATA.orders = res;
+            if(res.error) return Swal.fire("Sai mật khẩu","Vui lòng thử lại","error");
+            APP_DATA.adminKey = pass; APP_DATA.orders = res;
             document.getElementById('admin-login').classList.add('hidden');
             document.getElementById('admin-content').classList.remove('hidden');
             renderAdminOrders(res); Swal.close();
-            setTimeout(() => location.reload(), 600000); // Tự động khóa sau 10p
+            setTimeout(() => location.reload(), 600000); 
         }
 
-        // Chức năng tìm kiếm Đơn hàng (mới)
         function filterAdminOrders() {
             const kw = document.getElementById('adminOrderSearch').value.toLowerCase();
-            const filtered = APP_DATA.orders.filter(o => 
-                o.OrderID.toString().includes(kw) || 
-                o.EmployeeName.toLowerCase().includes(kw)
-            );
-            renderAdminOrders(filtered, true); // true = không cập nhật thống kê khi đang search
+            const filtered = APP_DATA.orders.filter(o => o.OrderID.toString().includes(kw) || o.EmployeeName.toLowerCase().includes(kw));
+            renderAdminOrders(filtered, true);
         }
 
         function renderAdminOrders(list, isSearch = false) {
@@ -200,15 +198,13 @@
                 document.getElementById('s-prep').innerText = APP_DATA.orders.filter(o=>o.Status==='Đã chuẩn bị').length;
                 document.getElementById('s-done').innerText = APP_DATA.orders.filter(o=>o.Status==='Đã nhận').length;
             }
-            
             document.getElementById('orderList').innerHTML = [...list].reverse().map(o => `
                 <div class="bg-white p-4 rounded-xl border-t-2 border-red-500 shadow-sm" id="card-${o.OrderID}">
-                    <div class="flex justify-between items-center mb-2">
-                        <button onclick="showDetails('${o.OrderID}')" class="text-red-600 font-bold underline">#${o.OrderID}</button>
+                    <div class="flex justify-between items-center mb-1">
+                        <button onclick="showDetails('${o.OrderID}')" class="text-red-600 font-bold underline text-sm">#${o.OrderID}</button>
                         <span class="text-[10px] text-gray-400 italic">${new Date(o.Timestamp).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}</span>
                     </div>
-                    <div class="font-bold text-gray-800">${o.EmployeeName}</div>
-                    <div class="text-[10px] text-gray-500 mt-1">${o.Phone}</div>
+                    <div class="font-bold text-sm text-gray-800">${o.EmployeeName}</div>
                     <input type="text" id="time-${o.OrderID}" value="${o.PickupTime||''}" class="w-full border p-2 mt-2 rounded-lg text-xs" placeholder="Hẹn giờ nhận...">
                     <div class="flex gap-2 mt-3">
                         <button onclick="updateStatus('${o.OrderID}','Đã chuẩn bị')" class="flex-1 bg-yellow-500 text-white py-2 rounded-lg text-[10px] font-bold">CHUẨN BỊ</button>
@@ -221,24 +217,20 @@
         function showDetails(id) {
             const o = APP_DATA.orders.find(x => x.OrderID == id);
             const items = JSON.parse(o.OrderDetails);
-            const html = `<div class="text-left text-sm max-h-60 overflow-y-auto">
-                <p class="mb-2">👤 <b>${o.EmployeeName}</b> (${o.EmployeeID})</p>
-                <p class="mb-4">📞 <b>${o.Phone}</b></p>
+            const html = `<div class="text-left text-sm">
+                <p>👤 <b>${o.EmployeeName}</b> (${o.EmployeeID})</p>
+                <p class="mb-3">📞 <b>${o.Phone}</b></p>
                 <div class="border-t pt-2 space-y-1">
                     ${items.map(i => `<div class="flex justify-between border-b border-dashed py-1"><span>${i.name}</span><b>x${i.qty}</b></div>`).join('')}
                 </div>
                 <p class="mt-4 text-right font-bold text-red-600">Tổng: ${Number(o.TotalAmount).toLocaleString()}đ</p>
             </div>`;
-            Swal.fire({ title: `Chi tiết Đơn #${id}`, html: html, confirmButtonText: "Đóng" });
+            Swal.fire({ title: `Đơn #${id}`, html: html, confirmButtonText: "Đóng" });
         }
 
         function updateStatus(id, s) {
             const time = document.getElementById(`time-${id}`).value;
             Swal.fire({toast:true, position:'top-end', icon:'success', title:'Đang cập nhật...', showConfirmButton:false, timer:1500});
-            if(s==='Đã nhận') {
-                const card = document.getElementById(`card-${id}`);
-                const b = card.querySelectorAll('button'); if(b[3]) b[3].remove();
-            }
             fetch(API_URL, {method:'POST', body: JSON.stringify({action:'updateOrder', orderId:id, status:s, pickupTime:time, pass:APP_DATA.adminKey})});
         }
     </script>
